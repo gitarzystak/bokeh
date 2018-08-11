@@ -213,7 +213,7 @@ class Plot(LayoutDOM):
         return _list_attr_splat(hovers)
 
     def _grid(self, dimension):
-        grid = [obj for obj in self.renderers if isinstance(obj, Grid) and obj.dimension==dimension]
+        grid = [obj for obj in self.center if isinstance(obj, Grid) and obj.dimension == dimension]
         return _list_attr_splat(grid)
 
     @property
@@ -278,9 +278,6 @@ class Plot(LayoutDOM):
         for tool in tools:
             if not isinstance(tool, Tool):
                 raise ValueError("All arguments to add_tool must be Tool subclasses.")
-
-            if hasattr(tool, 'overlay'):
-                self.renderers.append(tool.overlay)
 
             self.toolbar.tools.append(tool)
 
